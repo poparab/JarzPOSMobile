@@ -1,0 +1,45 @@
+name: Mobile CI
+
+on:
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  test-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'
+      - name: Install deps
+        run: npm ci
+      - name: Run unit tests with coverage
+        run: npm test -- --coverage
+      - name: ESLint check
+        run: npm run lint
+      - name: Prettier check
+        run: npx prettier --check "**/*.{ts,tsx,js,jsx,json,md,yml}"  
+
+  eas-preview:
+    needs: test-lint
+    if: github.event.pull_request.head.repo.full_name == github.repository # skip for forks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'
+      - name: Install deps
+        run: npm ci
+      - name: Install EAS CLI
+        run: npm install -g eas-cli
+      - name: Expo login
+        uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+      - name: EAS build preview (simulator)
+        run: eas build --platform=android --profile=preview --non-interactive --no-wait 

@@ -1,0 +1,10 @@
+---
+alwaysApply: true
+---
+i have added the folder called Frappe-bench which have the ERPNext app that has our custom app with our custom APIs. so anything that need custom API we will add it in drappe-bench/apps/jarz_pos .
+
+and in this directory you will find two important folders the first frontend_archive which has all the frontend that we built when our plan was to build all this in a browser as a ERPNext app.
+
+the second folder jarz_pos you will find where you will modify or add APIs.
+
+use the custom APIs always when there is a need with applying best practices.

@@ -1,0 +1,8 @@
+{
+  "expo": {
+    "orientation": "portrait"
+  },
+  "plugins": [
+    "expo-secure-store"
+  ]
+}
