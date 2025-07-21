@@ -25,4 +25,4 @@ module.exports = {
     '@typescript-eslint/ban-ts-comment': 'warn',
     '@typescript-eslint/no-empty-object-type': 'off',
   },
-}; 
+};

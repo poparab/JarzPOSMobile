@@ -17,14 +17,14 @@ export default function App(): React.ReactElement {
   return (
     <ReduxProvider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-    <AuthProvider>
-      <PosProvider>
+        <AuthProvider>
+          <PosProvider>
             <PaperProvider theme={theme}>
               <RootNavigator />
             </PaperProvider>
           </PosProvider>
         </AuthProvider>
-          </PersistGate>
-        </ReduxProvider>
+      </PersistGate>
+    </ReduxProvider>
   );
 }

@@ -51,10 +51,10 @@ export function KanbanScreen(): React.ReactElement {
       Completed: [],
     } as any;
     if (Array.isArray(invoices)) {
-    invoices.forEach((inv) => {
-      const col = (inv.status as Column) || 'Received';
-      if (map[col]) map[col].push(inv);
-    });
+      invoices.forEach((inv) => {
+        const col = (inv.status as Column) || 'Received';
+        if (map[col]) map[col].push(inv);
+      });
     }
     return map;
   }, [invoices]);
